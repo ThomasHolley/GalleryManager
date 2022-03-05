@@ -61,5 +61,9 @@ return [
 
     // Initial configuration with which to seed the ServiceManager.
     // Should be compatible with Laminas\ServiceManager\Config.
-    // 'service_manager' => [],
+    'service_manager' => [
+        'factories' => [
+            'Laminas\Session\Config\ConfigInterface' => 'Laminas\Session\Service\SessionConfigFactory',
+        ],
+    ],
 ];

@@ -20,7 +20,7 @@ class PhotoController extends MainController
     public function indexAction()
     {
         return [
-            'photos' => $this->getRepository(Photo::class)->findAll()
+            'photos' => $this->sessionValue("user") != null ? $this->getRepository(Photo::class)->findAll() : []
         ];
     }
 
@@ -36,16 +36,22 @@ class PhotoController extends MainController
         if(!$request->isPost()){
             return ["form" => $form];
         }else{
-            $form = $request->getPost();
-            $picture = $request->getFiles()->get("picture");
             $photo = new Photo();
-            $photo->setTitle($form->get("title"));
-            $photo->setDescription($form->get("description"));
-            $photo->setPath($picture["name"]);
-            $photo->setUser($this->getRepository(User::class)->find(1));
-            $this->entityManager->persist($photo);
-            $this->entityManager->flush();
-            $this->redirect()->toUrl("/photo");
+            $form->setInputFilter($photo->getInputFilter());
+            $form->setData($request->getPost());
+            if(!$form->isValid()){
+                return ["form" => $form];
+            }else{
+                $picture = $request->getFiles()->get("picture");
+                $photo = new Photo();
+                $photo->setTitle($form->get("title")->getValue());
+                $photo->setDescription($form->get("description")->getValue());
+                $photo->setPath($picture["name"]);
+                $photo->setUser($this->sessionValue("user"));
+                $this->entityManager->persist($photo);
+                $this->entityManager->flush();
+                $this->redirect()->toUrl("/photo");
+            }
         }
     }
 
@@ -57,37 +63,36 @@ class PhotoController extends MainController
             return $this->redirect()->toRoute('photo', ['action' => 'add']);
         }
 
-        // Retrieve the photo with the specified id. Doing so raises
-        // an exception if the photo is not found, which should result
-        // in redirecting to the landing page.
         try {
-            $album = $this->table->getAlbum($id);
+            $photo = $this->getRepository(Photo::class)->find($id);
         } catch (\Exception $e) {
             return $this->redirect()->toRoute('photo', ['action' => 'index']);
         }
 
-        $form = new AlbumForm();
-        $form->bind($album);
+        $form = new PhotoForm();
         $form->get('submit')->setAttribute('value', 'Edit');
 
         $request = $this->getRequest();
-        $viewData = ['id' => $id, 'form' => $form];
+        $viewData = ['id' => $id, 'form' => $form, 'photo' => $photo];
 
         if (!$request->isPost()) {
             return $viewData;
         }
 
-        $form->setInputFilter($album->getInputFilter());
+        $form->setInputFilter($photo->getInputFilter());
         $form->setData($request->getPost());
 
-        if (!$form->isValid()) {
+        if(!$form->isValid()){
             return $viewData;
         }
 
-        try {
-            $this->table->saveAlbum($album);
-        } catch (\Exception $e) {
+        $photo->setTitle($form->get('title')->getValue());
+        $photo->setDescription($form->get('description')->getValue());
+        if($request->getFiles()->get('picture')["name"] != ""){
+            $photo->setPath($request->getFiles()->get('picture')["name"]);
         }
+        $this->entityManager->persist($photo);
+        $this->entityManager->flush();
 
         // Redirect to photo list
         return $this->redirect()->toRoute('photo', ['action' => 'index']);
