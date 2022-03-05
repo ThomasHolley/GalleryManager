@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "131eb6e2f78bb9b2be3d889faf29af7e",
+    "content-hash": "f9b7b41807ecac382b381a0558bb1bb0",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -4182,6 +4182,46 @@
                 }
             ],
             "time": "2022-01-02T09:53:40+00:00"
+        },
+        {
+            "name": "thomasleconte/laminas-gen",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ThomasLeconte/laminas-gen.git",
+                "reference": "4c1777a30b0f163760a1bdeff34eec961ddc5a84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ThomasLeconte/laminas-gen/zipball/4c1777a30b0f163760a1bdeff34eec961ddc5a84",
+                "reference": "4c1777a30b0f163760a1bdeff34eec961ddc5a84",
+                "shasum": ""
+            },
+            "bin": [
+                "src/laminas-gen-console"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaminasGen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Leconte",
+                    "email": "thomasleconte05@gmail.com"
+                }
+            ],
+            "description": "Package for generate modules / controllers / forms with Laminas Framework.",
+            "support": {
+                "issues": "https://github.com/ThomasLeconte/laminas-gen/issues",
+                "source": "https://github.com/ThomasLeconte/laminas-gen/tree/v0.0.3"
+            },
+            "time": "2022-02-20T08:24:05+00:00"
         },
         {
             "name": "webimpress/safe-writer",

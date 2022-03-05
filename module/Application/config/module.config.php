@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Application;
 
+use Galerie\Controller\GalerieController;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
-use Album\Controller\AlbumController;
+use Photo\Controller\PhotoController;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -17,7 +18,7 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => AlbumController::class,
+                        'controller' => PhotoController::class,
                         'action'     => 'index',
                     ],
                 ],

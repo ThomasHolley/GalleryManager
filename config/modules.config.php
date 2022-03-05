@@ -20,5 +20,7 @@ return [
     //Modules
     'Laminas\ZendFrameworkBridge',
     'Application',
-    'Album',
+    'Photo',
+    'Commande',
+    'Galerie'
 ];

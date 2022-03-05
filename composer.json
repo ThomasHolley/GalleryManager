@@ -21,21 +21,27 @@
         "laminas/laminas-i18n": "^2.11",
         "doctrine/orm": "^2.11",
         "doctrine/annotations": "^1.13",
-        "symfony/cache": "^5.4"
+        "symfony/cache": "^5.4",
+        "thomasleconte/laminas-gen": "^0.0.3"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Album\\": "module/Album/src/"
+            "Photo\\": "module/Photo/src/",
+            "Galerie\\": "module/Galerie/src/",
+            "Commande\\": "module/Commande/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/",
-            "AlbumTest\\": "module/Album/test/"
+            "AlbumTest\\": "module/Photo/test/"
         }
     },
     "scripts": {
+        "laminas-gen": [
+            "LaminasGen\\Handler::handle"
+        ],
         "cs-check": "vendor/bin/phpcs",
         "cs-fix": "vendor/bin/phpcbf",
         "development-disable": "laminas-development-mode disable",

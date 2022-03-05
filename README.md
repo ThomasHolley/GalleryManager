@@ -15,6 +15,11 @@ Laminas album tutorial done with MySQL database instead of Sqlite.
 > - Unit tests has been added to Album module, you can try launch them by using `composer test Album`.
 
 ### Doctrine tips ###
+
+Check doctrine entity changes
+> vendor\bin\doctrine.bat orm:validate-schema
+
+Update database
 > vendor\bin\doctrine.bat orm:schema-tool:update --dump-sql  [--force for apply changes]
 
 

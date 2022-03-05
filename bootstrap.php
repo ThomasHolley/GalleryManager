@@ -6,7 +6,10 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 $entitiesPath = [
-    "module/Album/src/Model"
+    "module/Application/src/Model",
+    "module/Photo/src/Model",
+    "module/Galerie/src/Model",
+    "module/Commande/src/Model"
 ];
 
 $isDevMode = true;

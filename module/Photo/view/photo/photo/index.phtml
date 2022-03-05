@@ -1,0 +1,30 @@
+<?php
+// module/Photo/view/photo/photo/index.phtml:
+
+$title = 'My photos';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('photo', ['action' => 'add']) ?>">Add new photo</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Chemin</th>
+    <th>Utilisateur</th>
+    <th></th>
+</tr>
+<?php foreach ($photos as $photo) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($photo->getTitle()) ?></td>
+        <td><?= $this->escapeHtml($photo->getPath()) ?></td>
+        <td><?= $this->escapeHtml($photo->getUser()->getFullName()) ?></td>
+        <td>
+            <a href="<?= $this->url('photo', ['action' => 'edit', 'id' => $photo->getId()]) ?>">Edit</a>
+            <a href="<?= $this->url('photo', ['action' => 'delete', 'id' => $photo->getId()]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
