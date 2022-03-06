@@ -61,7 +61,7 @@ class AuthController extends MainController
             if(!$form->isValid()){
                 return ["form" => $form];
             }else{
-                $this->authIsValid($form);
+                return $this->authIsValid($form);
             }
         }
     }
@@ -80,8 +80,10 @@ class AuthController extends MainController
                 $this->setSessionProperty("user", $user);
                 $this->redirect()->toRoute("home");
             }else{
-                return ["form" => $form];
+                return ["form" => $form, "error" => "Identifiants incorrects, veuillez réessayer ..."];
             }
+        }else{
+            return ["form" => $form, "error" => "Adresse email inconnue, veuillez réessayer ..."];
         }
     }
 }

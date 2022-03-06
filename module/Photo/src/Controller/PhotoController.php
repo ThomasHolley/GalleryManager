@@ -3,6 +3,7 @@
 namespace Photo\Controller;
 
 use Application\Tools\MainController;
+use Laminas\View\Model\ViewModel;
 use Photo\Form\PhotoForm;
 use Photo\Model\Photo;
 
@@ -15,12 +16,15 @@ use Photo\Model\Photo;
  */
 class PhotoController extends MainController
 {
-
     public function indexAction()
     {
-        return [
-            'photos' => $this->sessionValue("user") != null ? $this->getRepository(Photo::class)->findAll() : []
-        ];
+        if($this->isAuthenticated()){
+            return [
+                'photos' => $this->sessionValue("user") != null ? $this->getRepository(Photo::class)->findAll() : []
+            ];
+        }else{
+            return $this->notAuthenticatedPage();
+        }
     }
 
     /**

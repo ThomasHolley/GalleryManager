@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Session\SessionManager;
 use Laminas\Session\Storage\ArrayStorage;
+use Laminas\View\Model\ViewModel;
 
 class MainController extends AbstractActionController
 {
@@ -59,5 +60,11 @@ class MainController extends AbstractActionController
 
     public function isAuthenticated(){
         return $this->sessionValue("user") != null;
+    }
+
+    public function notAuthenticatedPage(){
+        $view = new ViewModel();
+        $view->setTemplate("error/notAuthenticated.phtml");
+        return $view;
     }
 }
