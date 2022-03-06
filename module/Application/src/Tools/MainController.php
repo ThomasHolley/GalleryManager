@@ -19,7 +19,7 @@ class MainController extends AbstractActionController
     public function __construct()
     {
         $this->entityManager = require_once join(DIRECTORY_SEPARATOR, [__DIR__, '../../../../bootstrap.php']);
-
+        session_start();
         $this->sessionManager = new SessionManager();
     }
 

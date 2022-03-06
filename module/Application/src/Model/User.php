@@ -3,6 +3,7 @@
 namespace Application\Model;
 
 use Commande\Model\Commande;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Galerie\Model\Galerie;
 use Laminas\Filter\StringTrim;
@@ -77,7 +78,10 @@ class User
 
     public function __construct()
     {
-
+        $this->photos = new ArrayCollection();
+        $this->galeries = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId()
@@ -143,6 +147,70 @@ class User
     public function setRole($value)
     {
         $this->role = $value;
+    }
+
+    /**
+     * @return Photo[]
+     */
+    public function getPhotos(): array
+    {
+        return $this->photos->toArray();
+    }
+
+    /**
+     * @param Photo[] $photos
+     */
+    public function setPhotos(array $photos): void
+    {
+        $this->photos = $photos;
+    }
+
+    /**
+     * @return Galerie[]
+     */
+    public function getGaleries(): array
+    {
+        return $this->galeries->toArray();
+    }
+
+    /**
+     * @param Galerie[] $galeries
+     */
+    public function setGaleries(array $galeries): void
+    {
+        $this->galeries = $galeries->toArray();
+    }
+
+    /**
+     * @return Commande[]
+     */
+    public function getCommandes(): array
+    {
+        return $this->commandes->toArray();
+    }
+
+    /**
+     * @param Commande[] $commandes
+     */
+    public function setCommandes(array $commandes): void
+    {
+        $this->commandes = $commandes;
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getContacts(): array
+    {
+        return $this->contacts->toArray();
+    }
+
+    /**
+     * @param User[] $contacts
+     */
+    public function setContacts(array $contacts): void
+    {
+        $this->contacts = $contacts;
     }
 
     public function getInputFilter()

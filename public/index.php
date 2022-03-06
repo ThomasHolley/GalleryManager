@@ -11,8 +11,6 @@ function dv($var)
     die(var_dump($var));
 }
 
-session_start();
-
 /**
  * Display all errors when APPLICATION_ENV is development.
  */

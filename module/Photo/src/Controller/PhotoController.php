@@ -2,6 +2,7 @@
 
 namespace Photo\Controller;
 
+use Application\Model\User;
 use Application\Tools\MainController;
 use Laminas\View\Model\ViewModel;
 use Photo\Form\PhotoForm;
@@ -20,7 +21,7 @@ class PhotoController extends MainController
     {
         if($this->isAuthenticated()){
             return [
-                'photos' => $this->sessionValue("user") != null ? $this->getRepository(Photo::class)->findAll() : []
+                'photos' => $this->getRepository(Photo::class)->findBy(["user" => $this->sessionValue("user")])
             ];
         }else{
             return $this->notAuthenticatedPage();

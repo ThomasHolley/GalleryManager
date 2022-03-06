@@ -17,16 +17,27 @@ $this->headTitle($title);
     <th>Utilisateur</th>
     <th></th>
 </tr>
-<?php foreach ($photos as $photo) : ?>
+<?php if(count($photos) > 0){ ?>
+    <?php foreach ($photos as $photo) : ?>
+        <tr>
+            <td><?= $this->escapeHtml($photo->getTitle()) ?></td>
+            <td><?= substr($this->escapeHtml($photo->getDescription()), 0, 15).(strlen($photo->getDescription()) > 15 ? "..." : "") ?></td>
+            <td><?= $this->escapeHtml($photo->getPath()) ?></td>
+            <td><?= $this->escapeHtml($photo->getUser()->getFullName()) ?></td>
+            <td>
+                <a href="<?= $this->url('photo', ['action' => 'edit', 'id' => $photo->getId()]) ?>">Edit</a>
+                <a href="<?= $this->url('photo', ['action' => 'delete', 'id' => $photo->getId()]) ?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php } else { ?>
     <tr>
-        <td><?= $this->escapeHtml($photo->getTitle()) ?></td>
-        <td><?= substr($this->escapeHtml($photo->getDescription()), 0, 15).(strlen($photo->getDescription()) > 15 ? "..." : "") ?></td>
-        <td><?= $this->escapeHtml($photo->getPath()) ?></td>
-        <td><?= $this->escapeHtml($photo->getUser()->getFullName()) ?></td>
-        <td>
-            <a href="<?= $this->url('photo', ['action' => 'edit', 'id' => $photo->getId()]) ?>">Edit</a>
-            <a href="<?= $this->url('photo', ['action' => 'delete', 'id' => $photo->getId()]) ?>">Delete</a>
+        <td colspan="5">
+            <div class="alert alert-info" role="alert">
+                Aucune photo enregistrée ...
+            </div>
         </td>
     </tr>
-<?php endforeach; ?>
+<?php } ?>
+
 </table>
