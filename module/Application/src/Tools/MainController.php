@@ -8,21 +8,22 @@ use Doctrine\ORM\EntityRepository;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Session\SessionManager;
 use Laminas\Session\Storage\ArrayStorage;
-use Laminas\Session\Storage\SessionArrayStorage;
 
-class MainController extends AbstractActionController {
+class MainController extends AbstractActionController
+{
 
     protected EntityManager $entityManager;
     protected SessionManager $sessionManager;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->entityManager = require_once join(DIRECTORY_SEPARATOR, [__DIR__, '../../../../bootstrap.php']);
 
         $this->sessionManager = new SessionManager();
-        $this->setSessionProperty("user", $this->getRepository(User::class)->findOneBy(["nom" => "Leconte"]));
     }
 
-    public function getRepository(string $class): EntityRepository {
+    public function getRepository(string $class): EntityRepository
+    {
         return $this->entityManager->getRepository($class);
     }
 
@@ -31,7 +32,8 @@ class MainController extends AbstractActionController {
      * $this->updateSession(["user" => "toto"]);
      * @param array $content
      */
-    public function updateSession(array $content){
+    public function updateSession(array $content)
+    {
         $this->sessionManager->setStorage(new ArrayStorage($content));
     }
 
@@ -40,7 +42,8 @@ class MainController extends AbstractActionController {
      * @param $key
      * @param $value
      */
-    public function setSessionProperty($key, $value){
+    public function setSessionProperty($key, $value)
+    {
         $this->sessionManager->getStorage()->$key = $value;
     }
 
@@ -49,7 +52,12 @@ class MainController extends AbstractActionController {
      * @param $key
      * @return mixed
      */
-    public function sessionValue($key){
+    public function sessionValue($key)
+    {
         return $this->sessionManager->getStorage()->$key;
+    }
+
+    public function isAuthenticated(){
+        return $this->sessionValue("user") != null;
     }
 }

@@ -2,14 +2,13 @@
 
 namespace Photo\Controller;
 
-use Application\Model\User;
 use Application\Tools\MainController;
 use Photo\Form\PhotoForm;
 use Photo\Model\Photo;
 
 /**
  * Photo controller
- * By default a controller has 4 actions : index, add, edit, delete
+ * By default a controller has 4 actions : index, add, edit, deleteq
  * It's able to mapping alone when we call /index, /add, etc ...
  * Mapping also affect view selections, wich is in /view/controllerName/routeName -> /view/photo/photo.
  * So return new ViewModel and it will select its views by default
@@ -33,17 +32,16 @@ class PhotoController extends MainController
         $form = new PhotoForm();
         $form->get("submit")->setValue("Add");
         $request = $this->getRequest();
-        if(!$request->isPost()){
+        if (!$request->isPost()) {
             return ["form" => $form];
-        }else{
+        } else {
             $photo = new Photo();
             $form->setInputFilter($photo->getInputFilter());
             $form->setData($request->getPost());
-            if(!$form->isValid()){
+            if (!$form->isValid()) {
                 return ["form" => $form];
-            }else{
+            } else {
                 $picture = $request->getFiles()->get("picture");
-                $photo = new Photo();
                 $photo->setTitle($form->get("title")->getValue());
                 $photo->setDescription($form->get("description")->getValue());
                 $photo->setPath($picture["name"]);
@@ -82,13 +80,13 @@ class PhotoController extends MainController
         $form->setInputFilter($photo->getInputFilter());
         $form->setData($request->getPost());
 
-        if(!$form->isValid()){
+        if (!$form->isValid()) {
             return $viewData;
         }
 
         $photo->setTitle($form->get('title')->getValue());
         $photo->setDescription($form->get('description')->getValue());
-        if($request->getFiles()->get('picture')["name"] != ""){
+        if ($request->getFiles()->get('picture')["name"] != "") {
             $photo->setPath($request->getFiles()->get('picture')["name"]);
         }
         $this->entityManager->persist($photo);

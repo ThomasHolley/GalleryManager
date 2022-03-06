@@ -5,6 +5,11 @@ namespace Application\Model;
 use Commande\Model\Commande;
 use Doctrine\ORM\Mapping as ORM;
 use Galerie\Model\Galerie;
+use Laminas\Filter\StringTrim;
+use Laminas\Filter\StripTags;
+use Laminas\Filter\ToInt;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator\StringLength;
 use Photo\Model\Photo;
 
 /**
@@ -105,8 +110,9 @@ class User
         $this->prenom = $value;
     }
 
-    public function getFullName(){
-        return $this->nom." ".$this->prenom;
+    public function getFullName()
+    {
+        return $this->nom . " " . $this->prenom;
     }
 
     public function getEmail()
@@ -139,5 +145,110 @@ class User
         $this->role = $value;
     }
 
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
 
+        $inputFilter->add([
+            'name' => 'nom',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'prenom',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'email',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'password',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                [
+                    'name' => \Laminas\Validator\Identical::class,
+                    'options' => [
+                        'token' => 'confirmPassword',
+                        'message' => "Les mots de passe doivent être identique !"
+                    ],
+                ],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'confirmPassword',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => \Laminas\Validator\Identical::class,
+                    'options' => [
+                        'token' => 'password',
+                        'message' => "Les mots de passe doivent être identique !"
+                    ],
+                ],
+            ],
+        ]);
+        return $inputFilter;
+    }
 }

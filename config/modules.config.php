@@ -6,11 +6,12 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Security',
     'Laminas\Session',
     'Laminas\Db',
     'Laminas\Hydrator',
     'Laminas\Router',
-    
+
     //Forms
     'Laminas\Form',
     'Laminas\InputFilter',

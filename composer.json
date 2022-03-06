@@ -23,14 +23,16 @@
         "doctrine/annotations": "^1.13",
         "symfony/cache": "^5.4",
         "thomasleconte/laminas-gen": "^0.0.3",
-        "laminas/laminas-session": "^2.12"
+        "laminas/laminas-session": "^2.12",
+        "laminas/laminas-authentication": "^2.9"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Photo\\": "module/Photo/src/",
             "Galerie\\": "module/Galerie/src/",
-            "Commande\\": "module/Commande/src/"
+            "Commande\\": "module/Commande/src/",
+            "Security\\": "module/Security/src/"
         }
     },
     "autoload-dev": {
@@ -71,5 +73,8 @@
         "laminas/laminas-test": "^3.5",
         "phpunit/phpunit": "^9.5",
         "phpspec/prophecy-phpunit": "^2.0"
+    },
+    "config": {
+        "process-timeout": 0
     }
 }

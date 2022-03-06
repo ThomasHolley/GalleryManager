@@ -1,0 +1,79 @@
+<?php
+
+/**
+ *
+ * module/security/view/auth/auth/index.phtml
+ *
+ * This file has been generated with LaminasGen
+ * https://github.com/ThomasLeconte/laminas-gen
+ *
+ */
+
+$title = 'SharePhotos - Enregistrez vous !';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<?php
+$nom = $form->get('nom');
+$nom->setAttribute('class', 'form-control');
+$nom->setAttribute('placeholder', 'Votre nom');
+
+$prenom = $form->get('prenom');
+$prenom->setAttribute('class', 'form-control');
+$prenom->setAttribute('placeholder', 'Votre prénom');
+
+$email = $form->get('email');
+$email->setAttribute('class', 'form-control');
+$email->setAttribute('placeholder', 'Votre email');
+
+$password = $form->get('password');
+$password->setAttribute('class', 'form-control');
+$password->setAttribute('placeholder', 'Votre mot de passe');
+
+$confirmPassword = $form->get('confirmPassword');
+$confirmPassword->setAttribute('class', 'form-control');
+$confirmPassword->setAttribute('placeholder', 'Confirmez votre mot de passe');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('signup', ['action' => 'signup']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="form-group">
+    <?= $this->formLabel($nom) ?>
+    <?= $this->formElement($nom) ?>
+    <?= $this->formElementErrors()->render($nom, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($prenom) ?>
+    <?= $this->formElement($prenom) ?>
+    <?= $this->formElementErrors()->render($prenom, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($email) ?>
+    <?= $this->formElement($email) ?>
+    <?= $this->formElementErrors()->render($email, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($password) ?>
+    <?= $this->formElement($password) ?>
+    <?= $this->formElementErrors()->render($password, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($confirmPassword) ?>
+    <?= $this->formElement($confirmPassword) ?>
+    <?= $this->formElementErrors()->render($confirmPassword, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->form()->closeTag();

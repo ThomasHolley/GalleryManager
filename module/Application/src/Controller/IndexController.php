@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Application\Controller;
 
-use Laminas\Mvc\Controller\AbstractActionController;
+use Application\Tools\MainController;
 use Laminas\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class IndexController extends MainController
 {
     public function indexAction()
     {

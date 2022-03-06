@@ -9,16 +9,16 @@ return [
     'router' => [
         'routes' => [
             'photo' => [
-                'type'    => Segment::class,
+                'type' => Segment::class,
                 'options' => [
                     'route' => '/photo[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
+                        'id' => '[0-9]+',
                     ],
                     'defaults' => [
                         'controller' => Controller\PhotoController::class,
-                        'action'     => 'index',
+                        'action' => 'index',
                     ],
                 ],
             ],

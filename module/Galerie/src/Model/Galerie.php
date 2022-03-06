@@ -2,10 +2,10 @@
 
 namespace Galerie\Model;
 
-use Commande\Model\Commande;
-use Photo\Model\Photo;
 use Application\Model\User;
+use Commande\Model\Commande;
 use Doctrine\ORM\Mapping as ORM;
+use Photo\Model\Photo;
 
 /**
  * @ORM\Entity
@@ -21,26 +21,26 @@ class Galerie
      * @ORM\GeneratedValue
      * @ORM\Column(name="id", type="integer")
      */
-	private $id;
+    private $id;
 
     /**
      * @ORM\Column(name="nom", type="string")
      */
-	private $nom;
+    private $nom;
     /**
      * @ORM\Column(name="description", type="string")
      */
-	private $description;
+    private $description;
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-	private $created;
+    private $created;
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-	private $updated;
+    private $updated;
 
     /**
      * @var Photo[]

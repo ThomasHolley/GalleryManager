@@ -42,7 +42,7 @@ class PhotoForm extends Form
             'type' => 'submit',
             'attributes' => [
                 'value' => 'Go',
-                'id'    => 'submitbutton',
+                'id' => 'submitbutton',
             ],
         ]);
     }

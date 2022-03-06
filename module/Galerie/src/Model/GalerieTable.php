@@ -2,7 +2,6 @@
 
 namespace Galerie\Model;
 
-use RuntimeException;
 use Laminas\Db\TableGateway\TableGatewayInterface;
 
 class GalerieTable

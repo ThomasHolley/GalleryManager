@@ -3,8 +3,8 @@
 namespace Photo\Model;
 
 use Application\Model\User;
-use Galerie\Model\Galerie;
 use Doctrine\ORM\Mapping as ORM;
+use Galerie\Model\Galerie;
 use Laminas\Filter\StringTrim;
 use Laminas\Filter\StripTags;
 use Laminas\Filter\ToInt;
@@ -138,7 +138,8 @@ class Photo
         $this->user = $user;
     }
 
-    public function getInputFilter(){
+    public function getInputFilter()
+    {
         $inputFilter = new InputFilter();
 
         $inputFilter->add([

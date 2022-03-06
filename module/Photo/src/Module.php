@@ -2,9 +2,6 @@
 
 namespace Photo;
 
-use Laminas\Db\ResultSet\ResultSet;
-use Laminas\Db\Adapter\AdapterInterface;
-use Laminas\Db\TableGateway\TableGateway;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 
 class Module implements ConfigProviderInterface
@@ -13,10 +10,10 @@ class Module implements ConfigProviderInterface
     {
         return include __DIR__ . '/../config/module.config.php';
     }
-    
+
     /**
      * With this function you define factory to return your futures database mapped objects
-     * 
+     *
      * Error : "Unable to resolve service "Photo\AdapterInterface" -> Import AdapterInterface
      */
     public function getServiceConfig()
@@ -39,7 +36,7 @@ class Module implements ConfigProviderInterface
 
     /**
      * Define factory for PhotoController with AlbumTable parameter
-     * 
+     *
      * Error: "Unable to resolve service "Photo\Controller\PhotoController" to a factory" -> Remove controllers factories at start of your Photo/config/module.config.php
      */
     public function getControllerConfig()
