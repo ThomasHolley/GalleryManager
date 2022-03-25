@@ -21,6 +21,14 @@ class MainController extends AbstractActionController
         $this->entityManager = require_once join(DIRECTORY_SEPARATOR, [__DIR__, '../../../../bootstrap.php']);
         session_start();
         $this->sessionManager = new SessionManager();
+        if($this->isAuthenticated()){
+            $this->refreshAuthenticatedUser();
+        }
+    }
+
+    public function refreshAuthenticatedUser(){
+        $this->setSessionProperty("user",
+            $this->getRepository(User::class)->findOneBy(["id" => $this->sessionValue("user")->getId()]));
     }
 
     protected function getEntityManager(){

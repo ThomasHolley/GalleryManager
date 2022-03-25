@@ -66,6 +66,9 @@
                         </li>
                         <?php if(isset($_SESSION["user"])){ ?>
                             <li class="nav-item">
+                                <span class="nav-link">Bienvenue <?= $_SESSION["user"]->getFullName() ?></span>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="<?= $this->url('logout') ?>">
                                     Déconnexion
                                 </a>
