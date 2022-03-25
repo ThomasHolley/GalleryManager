@@ -23,7 +23,11 @@ class MainController extends AbstractActionController
         $this->sessionManager = new SessionManager();
     }
 
-    public function getRepository(string $class): EntityRepository
+    protected function getEntityManager(){
+        return $this->entityManager;
+    }
+
+    protected function getRepository(string $class): EntityRepository
     {
         return $this->entityManager->getRepository($class);
     }
@@ -62,7 +66,8 @@ class MainController extends AbstractActionController
         return $this->sessionValue("user") != null;
     }
 
-    public function notAuthenticatedPage(){
+    public function notAuthenticatedPage()
+    {
         $view = new ViewModel();
         $view->setTemplate("error/notAuthenticated.phtml");
         return $view;

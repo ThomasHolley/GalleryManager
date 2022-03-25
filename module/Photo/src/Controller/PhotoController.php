@@ -4,6 +4,7 @@ namespace Photo\Controller;
 
 use Application\Model\User;
 use Application\Tools\MainController;
+use FormGenerator\FormGenerator;
 use Laminas\View\Model\ViewModel;
 use Photo\Form\PhotoForm;
 use Photo\Model\Photo;
