@@ -17,14 +17,16 @@ $proxyDir = null;
 $cache = null;
 $useSimpleAnnotationReader = false;
 
+$dbConfig = (require_once "config/autoload/global.php")["db"];
+
 // Connexion à la base de données
 $dbParams = [
     'driver' => 'pdo_mysql',
-    'host' => 'localhost',
+    'host' => explode("=", explode(";", $dbConfig["dsn"])[1])[1],
     'charset' => 'utf8',
-    'user' => 'root',
-    'password' => '',
-    'dbname' => 'sharePhotos',
+    'user' => $dbConfig["username"],
+    'password' => $dbConfig["password"],
+    'dbname' => explode("=", explode(";", explode(":", $dbConfig["dsn"])[1])[0])[1],
 ];
 
 $config = Setup::createAnnotationMetadataConfiguration(
