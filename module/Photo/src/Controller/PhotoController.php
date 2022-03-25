@@ -27,6 +27,26 @@ class PhotoController extends MainController
     }
 
     /**
+     * @param $image
+     * @return string
+     */
+    public function saveImage($image){
+        $targetDir = "data/uploads/";
+        $file = $image["name"];
+        $path = pathinfo($file);
+        $filename = uniqid();
+        $ext = $path["extension"];
+        $tmpName = $image["tmp_name"];
+        $path_filename_ext = $targetDir.$filename.".".$ext;
+        while(file_exists($path_filename_ext)){
+            $path_filename_ext = $targetDir.uniqid().".".$ext;
+        }
+        move_uploaded_file($tmpName, $path_filename_ext);
+
+        return $path_filename_ext;
+    }
+
+    /**
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\ORMException
      */
@@ -45,9 +65,10 @@ class PhotoController extends MainController
                 return ["form" => $form];
             } else {
                 $picture = $request->getFiles()->get("picture");
+                $path = $this->saveImage($picture);
                 $photo->setTitle($form->get("title")->getValue());
                 $photo->setDescription($form->get("description")->getValue());
-                $photo->setPath($picture["name"]);
+                $photo->setPath($path);
                 $photo->setUser($this->sessionValue("user"));
                 $this->entityManager->persist($photo);
                 $this->entityManager->flush();
