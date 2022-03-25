@@ -3,7 +3,7 @@ vendor/
 .idea/
 config/development.config.php
 data/cache/*
-data/uploads/*
+public/uploads/*
 !data/cache/.gitkeep
 phpunit.xml
 .phpunit.result.cache

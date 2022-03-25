@@ -3,6 +3,10 @@
 namespace Photo\Controller;
 
 use Application\Tools\MainController;
+use Laminas\Http\Header\CacheControl;
+use Laminas\Http\Header\ContentTransferEncoding;
+use Laminas\Http\Header\ContentType;
+use Laminas\Http\Headers;
 use Photo\Form\PhotoForm;
 use Photo\Model\Photo;
 
@@ -17,11 +21,11 @@ class PhotoController extends MainController
 {
     public function indexAction()
     {
-        if($this->isAuthenticated()){
+        if ($this->isAuthenticated()) {
             return [
                 'photos' => $this->getRepository(Photo::class)->findBy(["user" => $this->sessionValue("user")])
             ];
-        }else{
+        } else {
             return $this->notAuthenticatedPage();
         }
     }
@@ -30,19 +34,24 @@ class PhotoController extends MainController
      * @param $image
      * @return string
      */
-    public function saveImage($image){
-        $targetDir = "data/uploads/";
+    public function saveImage($image)
+    {
+        $targetDir = "public/uploads";
+        if(!file_exists($targetDir)){
+            mkdir($targetDir);
+        }
         $file = $image["name"];
         $path = pathinfo($file);
         $filename = uniqid();
         $ext = $path["extension"];
         $tmpName = $image["tmp_name"];
-        $path_filename_ext = $targetDir.$filename.".".$ext;
-        while(file_exists($path_filename_ext)){
-            $path_filename_ext = $targetDir.uniqid().".".$ext;
+        $path_filename_ext = $targetDir . "/" . $filename . "." . $ext;
+        while (file_exists("/".$path_filename_ext)) {
+            $path_filename_ext = $targetDir . "/" . uniqid() . "." . $ext;
         }
-        move_uploaded_file($tmpName, $path_filename_ext);
 
+        move_uploaded_file($tmpName, $path_filename_ext);
+        $path_filename_ext = str_replace("public/", "", $path_filename_ext);
         return $path_filename_ext;
     }
 
@@ -111,7 +120,7 @@ class PhotoController extends MainController
         $photo->setTitle($form->get('title')->getValue());
         $photo->setDescription($form->get('description')->getValue());
         if ($request->getFiles()->get('picture')["name"] != "") {
-            $photo->setPath($request->getFiles()->get('picture')["name"]);
+            $photo->setPath($this->saveImage($request->getFiles()->get('picture')));
         }
         $this->entityManager->persist($photo);
         $this->entityManager->flush();
