@@ -149,7 +149,6 @@ class PhotoController extends MainController
             // Redirect to list of photos
             return $this->redirect()->toRoute('photo');
         }
-        $photo = $this->getRepository(Photo::class)->find($id);
         return [
             'id' => $id,
             'photo' => $this->getRepository(Photo::class)->find($id),

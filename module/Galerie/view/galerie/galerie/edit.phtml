@@ -9,7 +9,45 @@
  *
  */
 
-$title = 'galerie - edit';
+$title = 'Modifier galerie';
 $this->headTitle($title);
 ?>
-<h1><?= $this->escapeHtml($title) ?></h1>
+    <h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+$nom = $form->get('nom');
+$nom->setAttribute('class', 'form-control');
+$nom->setAttribute('value', $galerie->getNom());
+$nom->setAttribute('placeholder', 'Nom de la galerie');
+
+$desc = $form->get('description');
+$desc->setAttribute('class', 'form-control');
+$desc->setValue($galerie->getDescription());
+$desc->setAttribute('placeholder', 'Description de la galerie');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('galerie', [
+    'action' => 'edit',
+    'id'     => $galerie->getId(),
+]));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+    <div class="form-group">
+        <?= $this->formLabel($nom) ?>
+        <?= $this->formElement($nom) ?>
+        <?= $this->formElementErrors()->render($nom, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formLabel($desc) ?>
+        <?= $this->formElement($desc) ?>
+        <?= $this->formElementErrors()->render($desc, ['class' => 'help-block']) ?>
+    </div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

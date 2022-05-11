@@ -9,7 +9,7 @@
  *
  */
 
-$title = 'galerie - index';
+$title = 'Mes galeries';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
@@ -30,8 +30,8 @@ $this->headTitle($title);
                 <td><?= $this->escapeHtml($galerie->getNom()) ?></td>
                 <td><?= substr($this->escapeHtml($galerie->getDescription()), 0, 15).(strlen($galerie->getDescription()) > 15 ? "..." : "") ?></td>
                 <td>
-                    <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>">Edit</a>
-                    <a href="<?= $this->url('galerie', ['action' => 'delete', 'id' => $galerie->getId()]) ?>">Delete</a>
+                    <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>" class="btn btn-primary">Edit</a>
+                    <a href="<?= $this->url('galerie', ['action' => 'delete', 'id' => $galerie->getId()]) ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
