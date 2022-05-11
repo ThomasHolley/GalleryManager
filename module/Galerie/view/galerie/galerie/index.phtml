@@ -13,3 +13,36 @@ $title = 'galerie - index';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
+
+<p>
+    <a href="<?= $this->url('galerie', ['action' => 'add']) ?>">Créer une galerie</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    <?php if(count($galeries) > 0){ ?>
+        <?php foreach ($galeries as $galerie) : ?>
+            <tr>
+                <td><?= $this->escapeHtml($galerie->getNom()) ?></td>
+                <td><?= substr($this->escapeHtml($galerie->getDescription()), 0, 15).(strlen($galerie->getDescription()) > 15 ? "..." : "") ?></td>
+                <td>
+                    <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>">Edit</a>
+                    <a href="<?= $this->url('galerie', ['action' => 'delete', 'id' => $galerie->getId()]) ?>">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php } else { ?>
+        <tr>
+            <td colspan="5">
+                <div class="alert alert-info" role="alert">
+                    Aucune galerie enregistrée ...
+                </div>
+            </td>
+        </tr>
+    <?php } ?>
+
+</table>

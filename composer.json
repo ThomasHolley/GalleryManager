@@ -75,6 +75,10 @@
         "phpspec/prophecy-phpunit": "^2.0"
     },
     "config": {
-        "process-timeout": 0
+        "process-timeout": 0,
+        "allow-plugins": {
+            "laminas/laminas-component-installer": true,
+            "laminas/laminas-skeleton-installer": true
+        }
     }
 }

@@ -4342,34 +4342,6 @@
             "time": "2022-01-02T09:53:40+00:00"
         },
         {
-            "name": "thomasleconte/form-generator",
-            "version": "0.0.1",
-            "dist": {
-                "type": "path",
-                "url": "C:/xampp7.4/htdocs/form-generator",
-                "reference": "4e5b46f61395abc61849fd1ca782df8788df84cd"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "FormGenerator\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "ThomasL",
-                    "email": "thomasleconte05@gmail.com"
-                }
-            ],
-            "description": "PHP form generator compatible with Doctrine",
-            "transport-options": {
-                "relative": false
-            }
-        },
-        {
             "name": "thomasleconte/laminas-gen",
             "version": "0.0.3",
             "source": {

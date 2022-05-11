@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Galerie\Controller;
 
-use Laminas\Mvc\Controller\AbstractActionController;
+use Application\Tools\MainController;
+use Galerie\Form\GalerieForm;
+use Galerie\Model\Galerie;
 use Laminas\View\Model\ViewModel;
 
 /**
@@ -13,16 +15,42 @@ use Laminas\View\Model\ViewModel;
  * https://github.com/ThomasLeconte/laminas-gen
  *
  */
-class GalerieController extends AbstractActionController
+class GalerieController extends MainController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        if ($this->isAuthenticated()) {
+            return [
+                'galeries' => $this->getRepository(Galerie::class)->findBy(["user" => $this->sessionValue("user")])
+            ];
+        } else {
+            return $this->notAuthenticatedPage();
+        }
     }
 
     public function addAction()
     {
-        return new ViewModel();
+        $form = new GalerieForm();
+        $request = $this->getRequest();
+        if ($request->isGet()) {
+            return ["form" => $form];
+        } else {
+            $galerie = new Galerie();
+            $form->setInputFilter($galerie->getInputFilter());
+            $form->setData($request->getPost());
+            if (!$form->isValid()) {
+                return ["form" => $form];
+            } else {
+                $galerie->setNom($form->get("nom")->getValue());
+                $galerie->setDescription($form->get("description")->getValue());
+                $galerie->setUser($this->sessionValue("user"));
+                $galerie->setCreated(new \DateTime());
+                $galerie->setUpdated(new \DateTime());
+                $this->entityManager->persist($galerie);
+                $this->entityManager->flush();
+                $this->redirect()->toUrl("/galerie");
+            }
+        }
     }
 
     public function editAction()

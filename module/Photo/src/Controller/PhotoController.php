@@ -62,7 +62,6 @@ class PhotoController extends MainController
     public function addAction()
     {
         $form = new PhotoForm();
-        $form->get("submit")->setValue("Add");
         $request = $this->getRequest();
         if (!$request->isPost()) {
             return ["form" => $form];

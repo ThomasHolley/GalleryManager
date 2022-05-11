@@ -5,6 +5,11 @@ namespace Galerie\Model;
 use Application\Model\User;
 use Commande\Model\Commande;
 use Doctrine\ORM\Mapping as ORM;
+use Laminas\Filter\StringTrim;
+use Laminas\Filter\StripTags;
+use Laminas\Filter\ToInt;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator\StringLength;
 use Photo\Model\Photo;
 
 /**
@@ -75,6 +80,24 @@ class Galerie
     {
         $this->id = $id;
     }
+
+    /**
+     * @return Commande[]
+     */
+    public function getCommandes(): array
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * @param Commande[] $commandes
+     */
+    public function setCommandes(array $commandes): void
+    {
+        $this->commandes = $commandes;
+    }
+
+
 
     /**
      * @return mixed
@@ -172,5 +195,55 @@ class Galerie
         $this->updated = $updated;
     }
 
+    public function getInputFilter()
+    {
+        $inputFilter = new InputFilter();
 
+        $inputFilter->add([
+            'name' => 'id',
+            'required' => true,
+            'filters' => [
+                ['name' => ToInt::class],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'nom',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+            ],
+        ]);
+
+        $inputFilter->add([
+            'name' => 'description',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => StringLength::class,
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+            ],
+        ]);
+        return $inputFilter;
+    }
 }

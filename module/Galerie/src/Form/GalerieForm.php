@@ -1,25 +1,25 @@
 <?php
 
-namespace Photo\Form;
+namespace Galerie\Form;
 
 use Laminas\Form\Form;
 
-class PhotoForm extends Form
+class GalerieForm extends Form
 {
     public function __construct($name = null)
     {
         // We will ignore the name provided to the constructor
-        parent::__construct('photo');
+        parent::__construct('galerie');
 
         $this->add([
             'name' => 'id',
             'type' => 'hidden',
         ]);
         $this->add([
-            'name' => 'title',
+            'name' => 'nom',
             'type' => 'text',
             'options' => [
-                'label' => 'Title',
+                'label' => 'Nom',
             ],
         ]);
         $this->add([
@@ -28,13 +28,6 @@ class PhotoForm extends Form
             'options' => [
                 'label' => 'Description',
             ],
-        ]);
-        $this->add([
-            'name' => 'picture',
-            'type' => 'file',
-            'options' => [
-                'label' => 'Photo'
-            ]
         ]);
 
         $this->add([

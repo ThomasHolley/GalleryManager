@@ -20,7 +20,7 @@ return [
             'galerie' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/galerie[:action[/:id]]',
+                    'route' => '/galerie[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
