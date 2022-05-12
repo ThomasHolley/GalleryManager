@@ -80,4 +80,11 @@ class MainController extends AbstractActionController
         $view->setTemplate("error/notAuthenticated.phtml");
         return $view;
     }
+
+    public function notAuthorizedPage()
+    {
+        $view = new ViewModel();
+        $view->setTemplate("error/notAuthorized.phtml");
+        return $view;
+    }
 }

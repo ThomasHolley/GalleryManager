@@ -27,7 +27,7 @@ $this->headTitle($title);
     <?php if(count($galeries) > 0){ ?>
         <?php foreach ($galeries as $galerie) : ?>
             <tr>
-                <td><?= $this->escapeHtml($galerie->getNom()) ?></td>
+                <td><a href="<?= $this->url('galerie', ['action' => 'detail', 'id' => $galerie->getId()]) ?>"><?= $this->escapeHtml($galerie->getNom()) ?></a></td>
                 <td><?= substr($this->escapeHtml($galerie->getDescription()), 0, 15).(strlen($galerie->getDescription()) > 15 ? "..." : "") ?></td>
                 <td>
                     <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>" class="btn btn-primary">Edit</a>

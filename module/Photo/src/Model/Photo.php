@@ -40,7 +40,7 @@ class Photo
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="photos", fetch="EXTRA_LAZY")
      */
     private $user;
 
@@ -120,6 +120,22 @@ class Photo
     public function setDescription($description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return Galerie
+     */
+    public function getGalerie(): Galerie
+    {
+        return $this->galerie;
+    }
+
+    /**
+     * @param Galerie $galerie
+     */
+    public function setGalerie(Galerie $galerie): void
+    {
+        $this->galerie = $galerie;
     }
 
     /**

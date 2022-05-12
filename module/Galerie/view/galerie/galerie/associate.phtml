@@ -1,0 +1,51 @@
+<?php
+
+/**
+ *
+ * @var \Galerie\Model\Galerie $galerie
+ * @var \Photo\Model\Photo[] $photos
+ *
+ */
+
+$title = 'Galerie - Associer une photo';
+$this->headTitle($title);
+?>
+
+<div class="d-flex align-items-center justify-content-between">
+    <h3><?= $galerie->getNom() ?> - Associer des photos</h3>
+</div>
+
+
+<form method="post" action="">
+    <?php if(count($photos) > 0){ ?>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Apercu</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Ajouter ?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($photos as $photo): ?>
+                <tr>
+                    <th scope="row"><img class="card-img-top" src="../../<?= $photo->getPath() ?>" alt="Card image cap" style="width: 14rem;"></th>
+                    <td><?= $photo->getTitle() ?></td>
+                    <td><?= $photo->getDescription() ?></td>
+                    <td><input type="checkbox" name="<?= $photo->getId() ?>" /></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">Valider</button>
+        </div>
+    <?php } else { ?>
+        <div class="alert alert-info" role="alert">
+            Aucune photo disponible, veuillez vérifier que les photos que vous souhaitez ajouter ne soient pas déjà effectées à une autre galerie.<br/>
+            Si ce n'est pas le cas, vous pouvez ajouter une nouvelle photo depuis la page d'accueil !
+        </div>
+    <?php } ?>
+</form>

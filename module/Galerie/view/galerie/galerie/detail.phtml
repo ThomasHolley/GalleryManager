@@ -1,0 +1,44 @@
+<?php
+
+/**
+ *
+ * module/galerie/view/galerie/galerie/index.phtml
+ *
+ * This file has been generated with LaminasGen
+ * https://github.com/ThomasLeconte/laminas-gen
+ *
+ * @var \Galerie\Model\Galerie $galerie
+ *
+ */
+
+$title = 'Mes galeries';
+$this->headTitle($title);
+?>
+
+<div class="d-flex align-items-center justify-content-between">
+    <h1>Détail de la galerie n°<?= $galerie->getId() ?></h1>
+    <a class="btn btn-primary mb-2" href="<?= $this->url('galerie', ['action' => 'associate', 'id' => $galerie->getId()]) ?>">Ajouter une photo</a>
+</div>
+
+
+<div class="card">
+    <div class="card-body d-flex flex-wrap">
+
+        <?php if(count($galerie->getPhotos()) > 0){ ?>
+            <?php foreach($galerie->getPhotos() as $photo): ?>
+                <div class="card ml-2 mr-2" style="width: 18rem;">
+                    <img class="card-img-top" src="../../<?= $photo->getPath() ?>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $photo->getTitle() ?></h5>
+                        <p class="card-text"><?= $photo->getDescription() ?></p>
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
+        <?php } else { ?>
+            <div class="alert alert-info" role="alert">
+                Aucune photo associée à cette galerie...
+            </div>
+        <?php } ?>
+    </div>
+</div>

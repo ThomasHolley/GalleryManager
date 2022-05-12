@@ -4,6 +4,7 @@ namespace Galerie\Model;
 
 use Application\Model\User;
 use Commande\Model\Commande;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Laminas\Filter\StringTrim;
 use Laminas\Filter\StripTags;
@@ -24,7 +25,7 @@ class Galerie
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column (name="id", type="integer")
      */
     private $id;
 
@@ -48,7 +49,7 @@ class Galerie
     private $updated;
 
     /**
-     * @var Photo[]
+     * @var Collection $photos
      * @ORM\OneToMany(targetEntity=Photo::class, cascade={"persist", "remove"}, mappedBy="galerie")
      */
     private $photos;
@@ -61,7 +62,7 @@ class Galerie
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="galeries")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="galeries", fetch="EXTRA_LAZY")
      */
     private $user;
 
@@ -98,17 +99,16 @@ class Galerie
     }
 
 
-
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getPhotos()
+    public function getPhotos(): Collection
     {
         return $this->photos;
     }
 
     /**
-     * @param mixed $photos
+     * @param Photo[] $photos
      */
     public function setPhotos($photos): void
     {

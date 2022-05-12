@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Commande\Controller;
 
-use Laminas\Mvc\Controller\AbstractActionController;
+use Application\Tools\MainController;
 use Laminas\View\Model\ViewModel;
 
 /**
@@ -13,7 +13,7 @@ use Laminas\View\Model\ViewModel;
  * https://github.com/ThomasLeconte/laminas-gen
  *
  */
-class CommandeController extends AbstractActionController
+class CommandeController extends MainController
 {
     public function indexAction()
     {

@@ -8,6 +8,7 @@ use Application\Tools\MainController;
 use Galerie\Form\GalerieForm;
 use Galerie\Model\Galerie;
 use Laminas\View\Model\ViewModel;
+use Photo\Model\Photo;
 
 /**
  *
@@ -23,6 +24,65 @@ class GalerieController extends MainController
             return [
                 'galeries' => $this->getRepository(Galerie::class)->findBy(["user" => $this->sessionValue("user")])
             ];
+        } else {
+            return $this->notAuthenticatedPage();
+        }
+    }
+
+    public function detailAction()
+    {
+        if ($this->isAuthenticated()) {
+
+            $id = (int)$this->params()->fromRoute('id', 0);
+            $galerie = $this->getRepository(Galerie::class)->findOneBy(["id" => $id]);
+            if ($galerie->getUser()->getId() == $this->sessionValue("user")->getId()) {
+                return ["galerie" => $galerie];
+            } else {
+                return $this->notAuthorizedPage();
+            }
+        } else {
+            return $this->notAuthenticatedPage();
+        }
+    }
+
+    public function associateAction()
+    {
+        if ($this->isAuthenticated()) {
+            if ($this->getRequest()->isGet()) {
+                $id = (int)$this->params()->fromRoute('id', 0);
+                $galerie = $this->getRepository(Galerie::class)->findOneBy(["id" => $id]);
+                if ($galerie->getUser()->getId() == $this->sessionValue("user")->getId()) {
+                    $photos = $this->getRepository(Photo::class)->findBy(["user" => $this->sessionValue("user")]);
+                    $photos = array_filter($photos, function ($key) use ($photos, $galerie) {
+                        return !in_array($photos[$key]->getId(),
+                            array_map(fn($value): int => $value->getId(), $galerie->getPhotos()->toArray()));
+                    }, ARRAY_FILTER_USE_KEY);
+                    return ["galerie" => $galerie, "photos" => $photos];
+                } else {
+                    return $this->notAuthorizedPage();
+                }
+            } else {
+                $id = (int)$this->params()->fromRoute('id', 0);
+                $galerie = $this->getRepository(Galerie::class)->findOneBy(["id" => $id]);
+                if($galerie->getUser()->getId() == $this->sessionValue("user")->getId()){
+                    $photosChoosen = $this->getRequest()->getPost()->toArray();
+                    if(count($photosChoosen) > 0){
+                        $photoRepository = $this->getRepository(Photo::class);
+                        foreach ($photosChoosen as $key => $value){
+                            $photo = $photoRepository->findOneBy(["id" => $key]);
+                            if($photo != null){
+                                $photo->setGalerie($galerie);
+                                $this->entityManager->persist($photo);
+                                $this->entityManager->flush();
+                            }
+                        }
+                        $this->redirect()->toRoute("galerie", ["action" => "detail", "id" => $galerie->getId()]);
+                    }
+                }else{
+                    return $this->notAuthorizedPage();
+                }
+            }
+
         } else {
             return $this->notAuthenticatedPage();
         }
