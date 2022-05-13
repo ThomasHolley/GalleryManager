@@ -9,7 +9,7 @@
  *
  */
 
-$title = 'SharePhotos - Enregistrez vous !';
+$title = 'Enregistrement';
 $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
@@ -17,23 +17,23 @@ $this->headTitle($title);
 <?php
 $nom = $form->get('nom');
 $nom->setAttribute('class', 'form-control');
-$nom->setAttribute('placeholder', 'Votre nom');
+$nom->setAttribute('placeholder', 'Name');
 
 $prenom = $form->get('prenom');
 $prenom->setAttribute('class', 'form-control');
-$prenom->setAttribute('placeholder', 'Votre prénom');
+$prenom->setAttribute('placeholder', 'FirstName');
 
 $email = $form->get('email');
 $email->setAttribute('class', 'form-control');
-$email->setAttribute('placeholder', 'Votre email');
+$email->setAttribute('placeholder', 'Mail');
 
 $password = $form->get('password');
 $password->setAttribute('class', 'form-control');
-$password->setAttribute('placeholder', 'Votre mot de passe');
+$password->setAttribute('placeholder', 'Password');
 
 $confirmPassword = $form->get('confirmPassword');
 $confirmPassword->setAttribute('class', 'form-control');
-$confirmPassword->setAttribute('placeholder', 'Confirmez votre mot de passe');
+$confirmPassword->setAttribute('placeholder', 'Confirm Password');
 
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
@@ -78,4 +78,4 @@ echo $this->form()->openTag($form);
 echo $this->formSubmit($submit);
 echo $this->form()->closeTag(); ?>
 
-<a href="<?= $this->url('login') ?>">Déjà un compte ? Connectez vous !</a>
+<a href="<?= $this->url('login') ?>">Login</a>

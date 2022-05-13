@@ -16,7 +16,7 @@ class GalerieForm extends Form
             'type' => 'hidden',
         ]);
         $this->add([
-            'name' => 'nom',
+            'name' => 'name',
             'type' => 'text',
             'options' => [
                 'label' => 'Nom',
@@ -34,7 +34,7 @@ class GalerieForm extends Form
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [
-                'value' => 'Ajouter',
+                'value' => 'Add',
                 'id' => 'submitbutton',
             ],
         ]);
