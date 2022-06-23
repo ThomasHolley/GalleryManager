@@ -8,8 +8,10 @@ $this->headTitle($title);
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
 <p>
-    <a href="<?= $this->url('photo', ['action' => 'add']) ?>">Ajouter une photo</a>
+    <a class="btn btn-outline-primary" href="<?= $this->url('photo', ['action' => 'add']) ?>"><span class="glyphicon glyphicon-plus"></span><i class="fa-solid fa-plus"></i> Ajouter une photo</a>
 </p>
+
+
 
 <div class="d-flex flex-wrap">
     <?php foreach($photos as $photo): ?>
@@ -18,8 +20,8 @@ $this->headTitle($title);
             <div class="card-body">
                 <h5 class="card-title"><?= $photo->getTitle() ?></h5>
                 <p class="card-text"><?= $photo->getDescription() ?></p>
-                <a href="<?= $this->url('photo', ['action' => 'edit', 'id' => $photo->getId()]) ?>" class="btn btn-primary">Edit</a>
-                <a href="<?= $this->url('photo', ['action' => 'delete', 'id' => $photo->getId()]) ?>" class="btn btn-danger">Delete</a>
+                <a href="<?= $this->url('photo', ['action' => 'edit', 'id' => $photo->getId()]) ?>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="<?= $this->url('photo', ['action' => 'delete', 'id' => $photo->getId()]) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
 

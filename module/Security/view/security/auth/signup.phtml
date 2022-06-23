@@ -12,16 +12,15 @@
 $title = 'Enregistrement';
 $this->headTitle($title);
 ?>
-<h1><?= $this->escapeHtml($title) ?></h1>
 
 <?php
 $nom = $form->get('nom');
 $nom->setAttribute('class', 'form-control');
-$nom->setAttribute('placeholder', 'Name');
+$nom->setAttribute('placeholder', 'Nom');
 
 $prenom = $form->get('prenom');
 $prenom->setAttribute('class', 'form-control');
-$prenom->setAttribute('placeholder', 'FirstName');
+$prenom->setAttribute('placeholder', 'Prénom');
 
 $email = $form->get('email');
 $email->setAttribute('class', 'form-control');
@@ -33,7 +32,7 @@ $password->setAttribute('placeholder', 'Password');
 
 $confirmPassword = $form->get('confirmPassword');
 $confirmPassword->setAttribute('class', 'form-control');
-$confirmPassword->setAttribute('placeholder', 'Confirm Password');
+$confirmPassword->setAttribute('placeholder', 'Confirmation de mot de passe');
 
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
@@ -77,5 +76,3 @@ echo $this->form()->openTag($form);
 <?php
 echo $this->formSubmit($submit);
 echo $this->form()->closeTag(); ?>
-
-<a href="<?= $this->url('login') ?>">Login</a>

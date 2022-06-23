@@ -12,10 +12,11 @@
 $title = 'Mes galeries';
 $this->headTitle($title);
 ?>
+
 <h1><?= $this->escapeHtml($title) ?></h1>
 
 <p>
-    <a href="<?= $this->url('galerie', ['action' => 'add']) ?>">Créer une galerie</a>
+    <a class="btn btn-outline-primary" href="<?= $this->url('galerie', ['action' => 'add']) ?>"><span class="glyphicon glyphicon-plus"></span><i class="fa-solid fa-plus"></i> Créer une galerie</a>
 </p>
 
 <table class="table">
@@ -28,10 +29,10 @@ $this->headTitle($title);
         <?php foreach ($galeries as $galerie) : ?>
             <tr>
                 <td><a href="<?= $this->url('galerie', ['action' => 'detail', 'id' => $galerie->getId()]) ?>"><?= $this->escapeHtml($galerie->getNom()) ?></a></td>
-                <td><?= substr($this->escapeHtml($galerie->getDescription()), 0, 15).(strlen($galerie->getDescription()) > 15 ? "..." : "") ?></td>
+                <td><?=$galerie->getDescription()?></td>
                 <td>
-                    <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>" class="btn btn-primary">Edit</a>
-                    <a href="<?= $this->url('galerie', ['action' => 'delete', 'id' => $galerie->getId()]) ?>" class="btn btn-danger">Delete</a>
+                    <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="<?= $this->url('galerie', ['action' => 'delete', 'id' => $galerie->getId()]) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         <?php endforeach; ?>

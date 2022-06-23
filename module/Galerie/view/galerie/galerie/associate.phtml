@@ -7,12 +7,12 @@
  *
  */
 
-$title = 'Galerie - Associer une photo';
+$title = 'Ajouter une photo à une galerie';
 $this->headTitle($title);
 ?>
 
 <div class="d-flex align-items-center justify-content-between">
-    <h3><?= $galerie->getNom() ?> - Associer des photos</h3>
+    <h3>Ajouter des photos à la galerie "<?= $galerie->getNom() ?>"</h3>
 </div>
 
 
@@ -44,8 +44,7 @@ $this->headTitle($title);
         </div>
     <?php } else { ?>
         <div class="alert alert-info" role="alert">
-            Aucune photo disponible, veuillez vérifier que les photos que vous souhaitez ajouter ne soient pas déjà effectées à une autre galerie.<br/>
-            Si ce n'est pas le cas, vous pouvez ajouter une nouvelle photo depuis la page d'accueil !
+            Aucune photo disponible pour le moment.
         </div>
     <?php } ?>
 </form>

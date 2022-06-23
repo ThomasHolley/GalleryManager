@@ -12,16 +12,17 @@
 $title = 'galerie - add';
 $this->headTitle($title);
 ?>
-<h1>Create a Gallery</h1>
+<h1>Créer une galerie</h1>
 <?php
 // This provides a default CSS class and placeholder text for the title element:
-$nom = $form->get('name');
+$nom = $form->get('nom');
 $nom->setAttribute('class', 'form-control');
-$nom->setAttribute('placeholder', 'Title');
+$nom->setAttribute('placeholder', 'Titre');
 
 // This provides a default CSS class and placeholder text for the artist element:
 $description = $form->get('description');
 $description->setAttribute('class', 'form-control');
+$description->setAttribute('placeholder', 'Description de la galerie');
 
 // This provides CSS classes for the submit button:
 $submit = $form->get('submit');

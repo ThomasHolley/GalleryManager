@@ -19,7 +19,7 @@ class PhotoForm extends Form
             'name' => 'title',
             'type' => 'text',
             'options' => [
-                'label' => 'Title',
+                'label' => 'Titre',
             ],
         ]);
         $this->add([
@@ -33,7 +33,7 @@ class PhotoForm extends Form
             'name' => 'picture',
             'type' => 'file',
             'options' => [
-                'label' => 'Photo'
+                'label' => 'Télécharger un fichier'
             ]
         ]);
 

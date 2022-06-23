@@ -95,13 +95,16 @@ class GalerieController extends MainController
         if ($request->isGet()) {
             return ["form" => $form];
         } else {
+
             $galerie = new Galerie();
             $form->setInputFilter($galerie->getInputFilter());
             $form->setData($request->getPost());
             if (!$form->isValid()) {
+
                 return ["form" => $form];
+
             } else {
-                $galerie->setNom($form->get("name")->getValue());
+                $galerie->setNom($form->get("nom")->getValue());
                 $galerie->setDescription($form->get("description")->getValue());
                 $galerie->setUser($this->sessionValue("user"));
                 $galerie->setCreated(new \DateTime());

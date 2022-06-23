@@ -9,10 +9,18 @@
  *
  */
 
-$title = 'SharePhotos - Accès refusé';
+$title = 'Access denied';
 $this->headTitle($title);
 ?>
-    <h2>Vous n'êtes pas autorisé(e) à accéder à cette page !</h2>
-    <a class="btn btn-primary" href="<?= $this->url("home") ?>">Retour à l'accueil</a>
+    <h2>Authentification requise pour accéder à cette page</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-primary" href="<?= $this->url("login") ?>">Se connecter</a>
+                <a class="btn btn-warning" href="<?= $this->url('signup') ?>">S'enregistrer</a>
+
+            </div>
+        </div>
+    </div>
 <?php
 

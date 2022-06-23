@@ -9,7 +9,7 @@
  *
  */
 
-$title = 'galerie - delete';
+$title = 'Suppression de la galerie';
 $url   = $this->url('galerie', ['action' => 'delete', 'id' => $id]);
 
 $this->headTitle($title);
@@ -17,9 +17,8 @@ $this->headTitle($title);
 <h1><?= $this->escapeHtml($title) ?></h1>
 
 <p>
-    Are you sure that you want to delete
-    "<?= $this->escapeHtml($galerie->getNom()) ?>" ? <br/>
-    The description is : "<?= $this->escapeHtml($galerie->getDescription()) ?>"
+    Voulez-vous vraiment supprimer la photo suivante :
+    "<?= $this->escapeHtml($galerie->getNom()) ?>" ?
 </p>
 
 <form action="<?= $url ?>" method="post">

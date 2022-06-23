@@ -9,10 +9,21 @@
  *
  */
 
-$title = 'SharePhotos - Accès refusé';
+$title = 'Accueil';
 $this->headTitle($title);
 ?>
-    <h2>Vous devez être authentifié(e) pour accéder à cette page !</h2>
-    <a class="btn btn-primary" href="<?= $this->url("login") ?>">S'identifier ...</a>
+    <div class="card" style="width: 18rem; position: relative; left: 38%;">
+        <img src="https://zupimages.net/up/22/25/h57a.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-primary" href="<?= $this->url("login") ?>">Se connecter</a>
+                    <a class="btn btn-warning" href="<?= $this->url('signup') ?>">S'enregistrer</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php
 

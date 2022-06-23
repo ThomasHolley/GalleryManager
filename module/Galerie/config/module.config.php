@@ -7,13 +7,6 @@ namespace Galerie;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
-
-/**
- *
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
- */
 return [
     'router' => [
         'routes' => [

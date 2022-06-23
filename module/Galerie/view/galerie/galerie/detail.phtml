@@ -16,8 +16,8 @@ $this->headTitle($title);
 ?>
 
 <div class="d-flex align-items-center justify-content-between">
-    <h1>Détail de la galerie n°<?= $galerie->getId() ?></h1>
-    <a class="btn btn-primary mb-2" href="<?= $this->url('galerie', ['action' => 'associate', 'id' => $galerie->getId()]) ?>">Ajouter une photo</a>
+    <h1><?= $galerie->getNom() ?></h1>
+    <a class="btn btn-primary mb-2" href="<?= $this->url('galerie', ['action' => 'associate', 'id' => $galerie->getId()]) ?>"><i class="fa-solid fa-plus"></i> Ajouter une photo</a>
 </div>
 
 
@@ -37,7 +37,7 @@ $this->headTitle($title);
             <?php endforeach; ?>
         <?php } else { ?>
             <div class="alert alert-info" role="alert">
-                Aucune photo associée à cette galerie...
+                Galerie vide
             </div>
         <?php } ?>
     </div>

@@ -1,7 +1,7 @@
 <?php
 // module/Photo/view/photo/photo/delete.phtml:
 
-$title = 'Delete photo';
+$title = 'Suppression de la photo';
 $url   = $this->url('photo', ['action' => 'delete', 'id' => $id]);
 
 $this->headTitle($title);
@@ -9,15 +9,15 @@ $this->headTitle($title);
 <h1><?= $this->escapeHtml($title) ?></h1>
 
 <p>
-    Are you sure that you want to delete
+    Voulez-vous vraiment supprimer
     "<?= $this->escapeHtml($photo->getTitle()) ?>" ? <br/>
-    The description is : "<?= $this->escapeHtml($photo->getDescription()) ?>"
+    La description est la suivante : "<?= $this->escapeHtml($photo->getDescription()) ?>"
 </p>
 
 <form action="<?= $url ?>" method="post">
 <div class="form-group">
     <input type="hidden" name="id" value="<?= (int) $photo->getId() ?>" />
-    <input type="submit" class="btn btn-danger" name="del" value="Yes" />
+    <input type="submit" class="btn btn-danger" name="del" value="Yes">
     <input type="submit" class="btn btn-success" name="del" value="No" />
 </div>
 </form>
