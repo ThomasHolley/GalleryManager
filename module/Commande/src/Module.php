@@ -2,12 +2,7 @@
 
 namespace Commande;
 
-/**
- *
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
- */
+
 class Module
 {
     public function getConfig()

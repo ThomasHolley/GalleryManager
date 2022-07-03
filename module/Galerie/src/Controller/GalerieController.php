@@ -10,12 +10,6 @@ use Galerie\Model\Galerie;
 use Laminas\View\Model\ViewModel;
 use Photo\Model\Photo;
 
-/**
- *
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
- */
 class GalerieController extends MainController
 {
     public function indexAction()

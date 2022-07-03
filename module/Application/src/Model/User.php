@@ -16,9 +16,6 @@ use Photo\Model\Photo;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
  */
 class User
 {

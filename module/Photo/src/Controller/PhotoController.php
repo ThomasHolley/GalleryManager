@@ -10,13 +10,6 @@ use Laminas\Http\Headers;
 use Photo\Form\PhotoForm;
 use Photo\Model\Photo;
 
-/**
- * Photo controller
- * By default a controller has 4 actions : index, add, edit, deleteq
- * It's able to mapping alone when we call /index, /add, etc ...
- * Mapping also affect view selections, wich is in /view/controllerName/routeName -> /view/photo/photo.
- * So return new ViewModel and it will select its views by default
- */
 class PhotoController extends MainController
 {
     public function indexAction()

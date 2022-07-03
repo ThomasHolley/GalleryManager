@@ -11,12 +11,6 @@ use Laminas\View\Model\ViewModel;
 use Security\Form\LoginForm;
 use Security\Form\SignupForm;
 
-/**
- *
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
- */
 class AuthController extends MainController
 {
     public function indexAction()

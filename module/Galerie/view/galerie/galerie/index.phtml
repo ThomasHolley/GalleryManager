@@ -4,9 +4,6 @@
  *
  * module/galerie/view/galerie/galerie/index.phtml
  *
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
  */
 
 $title = 'Mes galeries';
@@ -33,6 +30,7 @@ $this->headTitle($title);
                 <td>
                     <a href="<?= $this->url('galerie', ['action' => 'edit', 'id' => $galerie->getId()]) ?>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a href="<?= $this->url('galerie', ['action' => 'delete', 'id' => $galerie->getId()]) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    <a href="<?= $this->url('commande', ['action' => 'add', 'id' => $galerie->getId()]) ?>" class="btn btn-danger">commander</a>
                 </td>
             </tr>
         <?php endforeach; ?>

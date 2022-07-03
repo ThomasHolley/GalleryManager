@@ -16,7 +16,7 @@ return [
     // MySQL configuration instead of sqlite laminas tutorial conf.
     'db' => [
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=gallerymanager;host=127.0.0.1',
+        'dsn' => 'mysql:dbname=photominute;host=127.0.0.1',
         'username' => 'root',
         'password' => 'root'
     ],

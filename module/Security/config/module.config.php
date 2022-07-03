@@ -10,13 +10,6 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
 use Photo\Controller\PhotoController;
 use Security\Controller\AuthController;
 
-
-/**
- *
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
- */
 return [
     'router' => [
         'routes' => [

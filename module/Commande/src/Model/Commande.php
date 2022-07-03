@@ -9,9 +9,6 @@ use Galerie\Model\Galerie;
 /**
  * @ORM\Entity
  * @ORM\Table(name="commande")
- * This file has been generated with LaminasGen
- * https://github.com/ThomasLeconte/laminas-gen
- *
  */
 class Commande
 {
